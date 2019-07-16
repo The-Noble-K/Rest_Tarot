@@ -25,7 +25,7 @@ SECRET_KEY = '*2nm_1^+jrch)(95xa1dxclci#l6zk2t+qks)66506&ck^dm*y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,10 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'RestTarot'
+    'RestTarot',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -49,6 +52,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CORS_ORIGIN_WHITELIST = ('http://localhost:3000' )
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:3000',
 ]
 
 ROOT_URLCONF = 'RestTarot_api.urls'
@@ -121,8 +130,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Django rest framework
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny'
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication'
     ]
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
+

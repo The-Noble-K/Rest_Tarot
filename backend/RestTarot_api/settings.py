@@ -9,8 +9,8 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-
 import os
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 # Application definition
 
@@ -37,9 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
-    'RestTarot',
-    'corsheaders'
+    'RestTarot'
 ]
 
 MIDDLEWARE = [
@@ -54,11 +56,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_WHITELIST = ('http://localhost:3000' )
 
-CSRF_TRUSTED_ORIGINS = [
-    'http://localhost:3000',
-]
+#CORS_ORIGIN_WHITELIST = ('http://localhost:3000' )
+
+#CSRF_TRUSTED_ORIGINS = ['http://localhost:3000',]
 
 ROOT_URLCONF = 'RestTarot_api.urls'
 
@@ -137,5 +138,5 @@ REST_FRAMEWORK = {
     ]
 }
 
-CORS_ORIGIN_ALLOW_ALL = True
+
 

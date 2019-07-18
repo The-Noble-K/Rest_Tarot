@@ -16,7 +16,7 @@ export default class Card extends Component {
     }
 
     async loadCards() {
-        const promise = await axios.get("http://localhost:8000/api");
+        const promise = await axios.get("http://localhost:8000/api/");
         const status = promise.staus;
         if (status === 200) {
             const data = promise.data.data;

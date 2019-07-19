@@ -1,18 +1,36 @@
 import React, {Component} from 'react';
-import'./App.css';
-
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
-
-import Card from "./Component/Card/index.js";
 
 class App extends Component {
-    render() {
-        return(
-        <Router>
-            <Route path="/" exact component={Card} />
-        </Router>
-        );
+  state = {
+    cards: []
+  };
+
+  async componentDidMount() {
+    try {
+      const res = await fetch('http://localhost:8000/RestTarot/');
+      const cards = await res.json();
+      this.setState({
+        cards
+      });
+    } catch (e) {
+      console.log(e);
     }
+  }
+
+  render() {
+    return (
+      <div>
+        {this.state.cards.map(card => (
+          <div key={card.id}>
+            <h1>{card.name}</h1>
+            <img src={card.image} alt={card.name}></img>
+            <span>{card.meaning}</span>
+            <span>{card.reversal}</span>
+          </div>
+        ))}
+      </div>
+    );
+  }
 }
 
 export default App;

@@ -21,7 +21,7 @@ class App extends Component {
     return (
       <div>
         {this.state.cards.map(card => (
-          <div key={card.id}>
+          <div key={card.card_id}>
             <h1>{card.name}</h1>
             <img src={card.image} alt={card.name}></img>
             <span>{card.meaning}</span>

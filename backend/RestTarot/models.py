@@ -5,7 +5,7 @@ class Card(models.Model):
     meaning = models.TextField()
     reversal = models.TextField()
     card_id = models.IntegerField()
-    image = models.ImageField(upload_to="static/img/")
+    image = models.CharField(max_length=150)
 
     def __str__(self):
         return "%s, %s, %s, %s, %s" %(self.name, self.meaning, self.reversal, self.card_id, self.image)
